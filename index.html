@@ -5,63 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>San Valentín ❤️</title>
 
-<!-- Fuente romántica -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   height: 100vh;
-  background: #c40000;
+  background: linear-gradient(180deg, #b30000, #ff4d4d);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Dancing Script', cursive;
   overflow: hidden;
-  font-family: 'Pacifico', cursive;
-  color: black;
+  color: #000;
 }
 
+/* CONTENEDOR */
 .container {
   text-align: center;
-  padding: 20px;
+  padding: 25px;
+  animation: fadeIn 1.2s ease;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
+  margin-bottom: 40px;
 }
 
+/* BOTONES */
 button {
-  font-size: 1.5rem;
-  padding: 12px 28px;
+  font-size: 1.6rem;
+  padding: 14px 32px;
+  border-radius: 18px;
   border: none;
-  border-radius: 15px;
   cursor: pointer;
 }
 
 #yes {
   background: #ffb6c1;
+  animation: pulse 1.4s infinite;
 }
 
 #no {
-  background: #e0e0e0;
+  background: #eeeeee;
   position: absolute;
 }
 
-/* Corazones segunda pantalla */
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* CORAZONES */
 .heart {
   position: absolute;
   color: rgba(255, 0, 0, 0.6);
-  font-size: 20px;
-  animation: fall 6s linear infinite;
+  font-size: 22px;
+  animation: fall 7s linear infinite;
 }
 
 @keyframes fall {
-  from {
-    top: -10%;
-  }
-  to {
-    top: 110%;
-  }
+  from { top: -10%; }
+  to { top: 110%; }
 }
 </style>
 </head>
@@ -73,8 +89,11 @@ button {
 </audio>
 
 <div class="container" id="content">
-  <h1>Mi Niña Hermosa<br>¿Quieres ser mi San Valentín?</h1>
-  <br>
+  <h1>
+    Mi Niña Hermosa 💖<br>
+    ¿Quieres ser mi San Valentín?
+  </h1>
+
   <button id="yes" onclick="yes()">Sí❣️</button>
   <button id="no" onclick="moveNo()">No... 😞</button>
 </div>
@@ -90,20 +109,19 @@ function startMusic() {
 }
 
 function yes() {
-  if (navigator.vibrate) {
-    navigator.vibrate(200);
-  }
+  if (navigator.vibrate) navigator.vibrate(250);
 
   document.body.innerHTML = `
     <div class="container">
-      <h1>❤️<br>
-      Eres lo mejor que me ha pasado Karina,<br>
-      ¡FELIZ SAN VALENTÍN!
+      <h1>
+        ❤️✨<br>
+        Eres lo mejor que me ha pasado Karina,<br>
+        ¡FELIZ SAN VALENTÍN!
       </h1>
     </div>
   `;
 
-  setInterval(createHeart, 300);
+  setInterval(createHeart, 350);
 }
 
 function moveNo() {
@@ -118,14 +136,12 @@ function moveNo() {
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
-  heart.innerHTML = "❤️";
+  heart.textContent = "❤️";
   heart.style.left = Math.random() * 100 + "%";
-  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  heart.style.fontSize = Math.random() * 18 + 16 + "px";
   document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
+  setTimeout(() => heart.remove(), 7000);
 }
 </script>
 
